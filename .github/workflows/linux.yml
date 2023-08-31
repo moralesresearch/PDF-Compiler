@@ -22,7 +22,7 @@ jobs:
           # pip install -r requirements.txt  # If you have requirements
         
       - name: Build executable
-        run: pyinstaller --onefile PDFcompiler.pyw
+        run: pyinstaller --onefile PDFCompiler.pyw
         
       - name: Upload artifact
         uses: actions/upload-artifact@v2
