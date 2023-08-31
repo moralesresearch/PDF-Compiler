@@ -32,6 +32,20 @@ def combine_pdfs():
 
     result_label.config(text="PDFs combined successfully!")
 
+def compress_pdf(pdf_file):
+    compressed_file = pdf_file.replace('.pdf', '_compressed.pdf')
+
+    with open(pdf_file, 'rb') as file:
+        pdf = PyPDF2.PdfReader(file)
+        writer = PyPDF2.PdfWriter()
+
+        for page in pdf.pages:
+            writer.add_page(page)
+
+        with open(compressed_file, 'wb') as output_file:
+            writer.write(output_file)
+
+    return compressed_file
 
 def add_pdf():
     file_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
@@ -40,6 +54,17 @@ def add_pdf():
         pdf_list.insert(tk.END, file_name)
         pdf_paths[file_name] = file_path
 
+def compress_and_merge_pdfs():
+    if pdf_files:
+        merged_file = merge_pdfs(pdf_files)
+
+        if compress_var.get():
+            compressed_file = compress_pdf(merged_file)
+            status_label.config(text=f"PDFs merged and compressed: {compressed_file}")
+        else:
+            status_label.config(text=f"PDFs merged: {merged_file}")
+    else:
+        status_label.config(text="No PDFs selected.")
 
 def remove_selected():
     selected_indices = pdf_list.curselection()
@@ -63,6 +88,9 @@ def show_about():
 root = tk.Tk()
 root.title("PDF Compiler")
 
+# Define global list to store selected PDF files
+pdf_files = []
+
 # Create the menu bar
 menubar = tk.Menu(root)
 root.config(menu=menubar)
@@ -84,6 +112,10 @@ pdf_list = tk.Listbox(root, selectmode=tk.MULTIPLE)
 pdf_list.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
 
 combine_button = tk.Button(root, text="Combine PDFs", command=combine_pdfs)
+compress_var = tk.BooleanVar()
+compress_checkbox = tk.Checkbutton(root, text="Compress Merged PDF", variable=compress_var)
+merge_button = tk.Button(root, text="Merge PDFs", command=compress_and_merge_pdfs)
+status_label = tk.Label(root, text="Status: ")
 remove_button = tk.Button(
     root, text="Remove Selected", command=remove_selected)
 clear_button = tk.Button(root, text="Clear List", command=clear_list)
@@ -92,6 +124,8 @@ result_label = tk.Label(root, text="")
 combine_button.pack(side=tk.LEFT, padx=5, pady=5)
 remove_button.pack(side=tk.LEFT, padx=5, pady=5)
 clear_button.pack(side=tk.LEFT, padx=5, pady=5)
+compress_checkbox.pack()
+status_label.pack()
 
 about_button = tk.Button(root, text="About", command=show_about)
 about_button.pack(side=tk.RIGHT, padx=5, pady=5)
