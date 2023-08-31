@@ -28,7 +28,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='PDFCompiler',
+    name='PDF Compiler',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
