@@ -29,7 +29,7 @@ exe = EXE(
     a.datas,
     [],
     name='PDF Compiler',
-    version='1.0',
+    version='2.0',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -48,7 +48,7 @@ app = BUNDLE(
     name='PDF Compiler.app',
     icon=None,
     bundle_identifier=None,
-    version='1.0',
+    version='2.0',
     info_plist={
             'NSPrincipalClass': 'NSApplication',
             'NSAppleScriptEnabled': False,
