@@ -18,8 +18,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller tkinter PyPDF2
-          pip install -r requirements.txt  # If you have requirements
+          pip install pyinstaller PyPDF2
+         # pip install -r requirements.txt  # If you have requirements
         
       - name: Build executable
         run: pyinstaller --onefile PDFCompiler.pyw
