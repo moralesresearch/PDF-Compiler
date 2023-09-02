@@ -55,7 +55,7 @@ def clear_list():
 
 
 def show_about():
-    about_text = "PDF Compiler\nVersion 1.0\nReleased on August 30, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
+    about_text = "PDF Compiler\nVersion 1.1\nReleased on September 2, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
     messagebox.showinfo("About", about_text)
 
 
