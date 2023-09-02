@@ -1,0 +1,19 @@
+{
+  "name": "pdf-compiler",
+  "version": "3.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.5.8",
+    "electron": "^26.1.0",
+    "pdf-lib": "^1.17.1",
+    "typescript": "^5.2.2"
+  }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>PDF Compiler</title>
+  </head>
+  <body>
+    <h1>PDF Compiler</h1>
+    <ul id="pdf-list"></ul>
+
+    <script>
+      // Access ipcRenderer from the preload script
+      const { ipcRenderer } = window;
+
+      // Listen for messages from the main process to update the PDF list
+      ipcRenderer.on("updatePdfList", (event, pdfPath) => {
+        const pdfList = document.getElementById("pdf-list");
+        if (pdfList) {
+          const listItem = document.createElement("li");
+          listItem.textContent = pdfPath;
+          pdfList.appendChild(listItem);
+        }
+      });
+    </script>
+  </body>
+</html>
