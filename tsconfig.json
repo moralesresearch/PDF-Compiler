@@ -1,9 +1,3 @@
-{
-	"compilerOptions": {
-		"target": "ES6",
-		"module": "commonjs",
-		"outDir": "./dist",
-		"rootDir": "./src",
-		"strict": true
-	}
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1f5bc99266df1733e7ea119d517d74cde914e44df64858a2cd7bdbe1cea8f07d
+size 140
