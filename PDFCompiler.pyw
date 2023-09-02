@@ -23,7 +23,7 @@ def combine_pdfs():
 
     # Determine the output folder (Documents or Desktop)
     # Change to "~/Desktop" for Desktop
-    output_folder = os.path.expanduser("~/Documents")
+    output_folder = os.path.expanduser("~/Desktop")
 
     # Save the combined PDF to a new file
     output_pdf = os.path.join(output_folder, 'combined.pdf')
