@@ -23,7 +23,7 @@ def combine_pdfs():
 
     # Determine the output folder (Documents or Desktop)
     # Change to "~/Desktop" for Desktop
-    output_folder = os.path.expanduser("~/Documents")
+    output_folder = os.path.expanduser("~/Desktop")
 
     # Save the combined PDF to a new file
     output_pdf = os.path.join(output_folder, 'combined.pdf')
@@ -55,7 +55,7 @@ def clear_list():
 
 
 def show_about():
-    about_text = "PDF Compiler\nVersion 1.0\nReleased on August 30, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
+    about_text = "PDF Compiler\nVersion 1.1\nReleased on September 2, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
     messagebox.showinfo("About", about_text)
 
 
