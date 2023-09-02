@@ -1,37 +1,34 @@
+import tkinter as tk
+from tkinter import filedialog, messagebox
 import PyPDF2
 import os
-import tkinter as tk
-from tkinter import filedialog
-from tkinter import messagebox
 
+# Initialize the tkinter app
+app = tk.Tk()
+app.title("PDF Compiler")
 
-def combine_pdfs():
-    pdf_files = pdf_list.get(0, tk.END)
-    if not pdf_files:
-        result_label.config(text="No PDF files to combine.")
-        return
+# Set the window dimensions
+app.geometry("300x300")  # Width x Height
 
-    # Create a PDF writer object
+# Define global list to store selected PDF files
+pdf_files = []
+
+# Define PDF Merging Functionality
+def merge_pdfs(files):
+    merged_pdf = "combined.pdf"
+    
     pdf_writer = PyPDF2.PdfWriter()
-
-    # Loop through each PDF file and add its pages to the writer
-    for pdf_name in pdf_files:
-        pdf_path = pdf_paths[pdf_name]
-        pdf_reader = PyPDF2.PdfReader(pdf_path)
-        for page_num in range(len(pdf_reader.pages)):
-            pdf_writer.add_page(pdf_reader.pages[page_num])
-
-    # Determine the output folder (Documents or Desktop)
-    # Change to "~/Desktop" for Desktop
-    output_folder = os.path.expanduser("~/Documents")
-
-    # Save the combined PDF to a new file
-    output_pdf = os.path.join(output_folder, 'combined.pdf')
-    with open(output_pdf, 'wb') as output_file:
+    for file in files:
+        pdf_reader = PyPDF2.PdfReader(file)
+        for page in pdf_reader.pages:
+            pdf_writer.add_page(page)
+    
+    with open(merged_pdf, "wb") as output_file:
         pdf_writer.write(output_file)
+    
+    return merged_pdf
 
-    result_label.config(text="PDFs combined successfully!")
-
+# Define PDF Compression Functionality
 def compress_pdf(pdf_file):
     compressed_file = pdf_file.replace('.pdf', '_compressed.pdf')
 
@@ -47,12 +44,35 @@ def compress_pdf(pdf_file):
 
     return compressed_file
 
-def add_pdf():
+# Define a function to generate a new unique filename
+def generate_unique_filename(filename):
+    base, ext = os.path.splitext(filename)
+    counter = 1
+    while os.path.exists(filename):
+        filename = f"{base}({counter}){ext}"
+        counter += 1
+    return filename
+
+# Define an About window
+def show_about():
+    about_window = tk.Toplevel(app)
+    about_window.title("About PDF Compiler")
+    about_text = """
+    PDF Compiler
+    Version: 2.0
+    Copyright © 2023 Morales Research Inc and Erick Suarez
+
+    Released: August 30, 2023
+    """
+    about_label = tk.Label(about_window, text=about_text)
+    about_label.pack()
+
+# Define GUI Callbacks
+def add_pdf_file():
     file_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
     if file_path:
-        file_name = os.path.basename(file_path)
-        pdf_list.insert(tk.END, file_name)
-        pdf_paths[file_name] = file_path
+        pdf_files.append(file_path)
+        file_listbox.insert(tk.END, os.path.basename(file_path))
 
 def compress_and_merge_pdfs():
     if pdf_files:
@@ -60,80 +80,43 @@ def compress_and_merge_pdfs():
 
         if compress_var.get():
             compressed_file = compress_pdf(merged_file)
+            compressed_file = generate_unique_filename(compressed_file)
             status_label.config(text=f"PDFs merged and compressed: {compressed_file}")
         else:
             status_label.config(text=f"PDFs merged: {merged_file}")
     else:
         status_label.config(text="No PDFs selected.")
 
-def remove_selected():
-    selected_indices = pdf_list.curselection()
-    for index in selected_indices[::-1]:
-        pdf_name = pdf_list.get(index)
-        del pdf_paths[pdf_name]
-        pdf_list.delete(index)
+# Create GUI elements
+file_listbox = tk.Listbox(app, selectmode=tk.MULTIPLE)
+add_button = tk.Button(app, text="Add PDF File", command=add_pdf_file)
+compress_var = tk.BooleanVar()
+compress_checkbox = tk.Checkbutton(app, text="Compress Merged PDF", variable=compress_var)
+merge_button = tk.Button(app, text="Merge PDFs", command=compress_and_merge_pdfs)
+status_label = tk.Label(app, text="Status: ")
 
+# Create a Menu bar
+menu_bar = tk.Menu(app)
+app.config(menu=menu_bar)
 
-def clear_list():
-    pdf_list.delete(0, tk.END)
-    pdf_paths.clear()
-
-
-def show_about():
-    about_text = "PDF Compiler\nVersion 1.0\nReleased on August 30, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
-    messagebox.showinfo("About", about_text)
-
-
-# Create the main window
-root = tk.Tk()
-root.title("PDF Compiler")
-
-# Define global list to store selected PDF files
-pdf_files = []
-
-# Create the menu bar
-menubar = tk.Menu(root)
-root.config(menu=menubar)
-
-# Create the File menu
-file_menu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="Add PDF File", command=add_pdf)
+# Create a File menu
+file_menu = tk.Menu(menu_bar, tearoff=0)
+menu_bar.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="Add PDF File", command=add_pdf_file)
 file_menu.add_separator()
-file_menu.add_command(label="Exit", command=root.quit)
+file_menu.add_command(label="Exit", command=app.quit)
 
-# Create the Help menu
-help_menu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label="Help", menu=help_menu)
+# Create a Help menu
+help_menu = tk.Menu(menu_bar, tearoff=0)
+menu_bar.add_cascade(label="Help", menu=help_menu)
 help_menu.add_command(label="About", command=show_about)
 
-# Create GUI elements
-pdf_list = tk.Listbox(root, selectmode=tk.MULTIPLE)
-pdf_list.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
-
-combine_button = tk.Button(root, text="Combine PDFs", command=combine_pdfs)
-compress_var = tk.BooleanVar()
-compress_checkbox = tk.Checkbutton(root, text="Compress Merged PDF", variable=compress_var)
-merge_button = tk.Button(root, text="Merge PDFs", command=compress_and_merge_pdfs)
-status_label = tk.Label(root, text="Status: ")
-remove_button = tk.Button(
-    root, text="Remove Selected", command=remove_selected)
-clear_button = tk.Button(root, text="Clear List", command=clear_list)
-result_label = tk.Label(root, text="")
-
-combine_button.pack(side=tk.LEFT, padx=5, pady=5)
-remove_button.pack(side=tk.LEFT, padx=5, pady=5)
-clear_button.pack(side=tk.LEFT, padx=5, pady=5)
+# Place GUI elements
+file_listbox.pack()
+add_button.pack()
 compress_checkbox.pack()
+merge_button.pack()
 status_label.pack()
 
-about_button = tk.Button(root, text="About", command=show_about)
-about_button.pack(side=tk.RIGHT, padx=5, pady=5)
-
-result_label.pack(padx=10, pady=5, fill=tk.X)
-
-# Dictionary to store file paths with displayed file names
-pdf_paths = {}
-
 # Start the GUI event loop
-root.mainloop()
+app.mainloop()
