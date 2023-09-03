@@ -29,7 +29,6 @@ exe = EXE(
     a.datas,
     [],
     name='PDF Compiler',
-    version='1.1',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
