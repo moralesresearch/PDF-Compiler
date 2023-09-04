@@ -1,122 +1,142 @@
-import tkinter as tk
-from tkinter import filedialog, messagebox
-import PyPDF2
+import sys
 import os
+import PyPDF2
+from PyPDF2 import PdfFileMerger
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QListWidget, QLabel, QLineEdit, \
+    QFileDialog, QMessageBox, QAction, QMenuBar, QDialog, QVBoxLayout as VBoxLayout
 
-# Initialize the tkinter app
-app = tk.Tk()
-app.title("PDF Compiler")
-
-# Set the window dimensions
-app.geometry("300x300")  # Width x Height
-
-# Define global list to store selected PDF files
+# Global list to store PDF file paths
 pdf_files = []
 
-# Define PDF Merging Functionality
-def merge_pdfs(files):
-    merged_pdf = "combined.pdf"
-    
-    pdf_writer = PyPDF2.PdfWriter()
-    for file in files:
-        pdf_reader = PyPDF2.PdfReader(file)
-        for page in pdf_reader.pages:
-            pdf_writer.add_page(page)
-    
-    with open(merged_pdf, "wb") as output_file:
-        pdf_writer.write(output_file)
-    
-    return merged_pdf
 
-# Define PDF Compression Functionality
-def compress_pdf(pdf_file):
-    compressed_file = pdf_file.replace('.pdf', '_compressed.pdf')
+class PDFCompiler(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-    with open(pdf_file, 'rb') as file:
-        pdf = PyPDF2.PdfReader(file)
-        writer = PyPDF2.PdfWriter()
+        self.setWindowTitle("PDF Compiler")
+        self.setGeometry(100, 100, 800, 600)
 
-        for page in pdf.pages:
-            writer.add_page(page)
+        self.central_widget = QWidget(self)
+        self.setCentralWidget(self.central_widget)
 
-        with open(compressed_file, 'wb') as output_file:
-            writer.write(output_file)
+        # List to display PDF file names
+        self.pdf_list_widget = QListWidget(self)
 
-    return compressed_file
+        # Output file name input
+        self.output_label = QLabel("Output File Name:", self)
+        self.output_edit = QLineEdit(self)
 
-# Define a function to generate a new unique filename
-def generate_unique_filename(filename):
-    base, ext = os.path.splitext(filename)
-    counter = 1
-    while os.path.exists(filename):
-        filename = f"{base}({counter}){ext}"
-        counter += 1
-    return filename
+        self.init_ui()
 
-# Define an About window
-def show_about():
-    about_window = tk.Toplevel(app)
-    about_window.title("About PDF Compiler")
-    about_text = """
-    PDF Compiler
-    Version: 2.0
-    Copyright © 2023 Morales Research Inc and Erick Suarez
+    def init_ui(self):
+        # Layouts
+        layout = QVBoxLayout(self.central_widget)
 
-    Released: August 30, 2023
-    """
-    about_label = tk.Label(about_window, text=about_text)
-    about_label.pack()
+        # Add widgets to layouts
+        layout.addWidget(self.pdf_list_widget)
+        layout.addWidget(self.output_label)
+        layout.addWidget(self.output_edit)
 
-# Define GUI Callbacks
-def add_pdf_file():
-    file_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
-    if file_path:
-        pdf_files.append(file_path)
-        file_listbox.insert(tk.END, os.path.basename(file_path))
+        # Create a menu bar
+        menubar = self.menuBar()
+        file_menu = menubar.addMenu("File")
+        help_menu = menubar.addMenu("Help")
 
-def compress_and_merge_pdfs():
-    if pdf_files:
-        merged_file = merge_pdfs(pdf_files)
+        # Add actions to the File menu
+        add_action = QAction("Add PDF", self)
+        remove_action = QAction("Remove PDF", self)
+        clear_action = QAction("Clear List", self)
+        combine_action = QAction("Combine PDFs", self)
+        exit_action = QAction("Exit", self)
 
-        if compress_var.get():
-            compressed_file = compress_pdf(merged_file)
-            compressed_file = generate_unique_filename(compressed_file)
-            status_label.config(text=f"PDFs merged and compressed: {compressed_file}")
-        else:
-            status_label.config(text=f"PDFs merged: {merged_file}")
-    else:
-        status_label.config(text="No PDFs selected.")
+        file_menu.addAction(add_action)
+        file_menu.addAction(remove_action)
+        file_menu.addAction(clear_action)
+        file_menu.addAction(combine_action)
+        file_menu.addAction(exit_action)
 
-# Create GUI elements
-file_listbox = tk.Listbox(app, selectmode=tk.MULTIPLE)
-add_button = tk.Button(app, text="Add PDF File", command=add_pdf_file)
-compress_var = tk.BooleanVar()
-compress_checkbox = tk.Checkbutton(app, text="Compress Merged PDF", variable=compress_var)
-merge_button = tk.Button(app, text="Merge PDFs", command=compress_and_merge_pdfs)
-status_label = tk.Label(app, text="Status: ")
+        # Add action to the Help menu for "About"
+        about_action = QAction("About", self)
+        help_menu.addAction(about_action)
 
-# Create a Menu bar
-menu_bar = tk.Menu(app)
-app.config(menu=menu_bar)
+        # Connect actions to functions
+        add_action.triggered.connect(self.add_pdf)
+        remove_action.triggered.connect(self.remove_pdf)
+        clear_action.triggered.connect(self.clear_list)
+        combine_action.triggered.connect(self.combine_pdfs)
+        exit_action.triggered.connect(self.close)
 
-# Create a File menu
-file_menu = tk.Menu(menu_bar, tearoff=0)
-menu_bar.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="Add PDF File", command=add_pdf_file)
-file_menu.add_separator()
-file_menu.add_command(label="Exit", command=app.quit)
+        # Connect "About" action to display the about dialog
+        about_action.triggered.connect(self.show_about_dialog)
 
-# Create a Help menu
-help_menu = tk.Menu(menu_bar, tearoff=0)
-menu_bar.add_cascade(label="Help", menu=help_menu)
-help_menu.add_command(label="About", command=show_about)
+    def add_pdf(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.ReadOnly
+        file_dialog = QFileDialog(self, options=options)
+        file_dialog.setNameFilter("PDF Files (*.pdf)")
+        file_paths, _ = file_dialog.getOpenFileNames()
 
-# Place GUI elements
-file_listbox.pack()
-add_button.pack()
-compress_checkbox.pack()
-merge_button.pack()
-status_label.pack()
+        if file_paths:
+            pdf_files.extend(file_paths)
+            self.update_list()
 
-# Start the GUI event loop
-app.mainloop()
+    def remove_pdf(self):
+        selected_item = self.pdf_list_widget.currentItem()
+
+        if selected_item:
+            pdf_files.pop(self.pdf_list_widget.row(selected_item))
+            self.pdf_list_widget.takeItem(self.pdf_list_widget.row(selected_item))
+
+    def clear_list(self):
+        pdf_files.clear()
+        self.pdf_list_widget.clear()
+
+    def combine_pdfs(self):
+        if not pdf_files:
+            QMessageBox.warning(self, "Warning", "No PDFs selected.")
+            return
+
+        output_file, _ = QFileDialog.getSaveFileName(self, "Save As", "", "PDF Files (*.pdf)")
+
+        if output_file:
+            pdf_merger = PdfFileMerger()
+
+            for pdf_file in pdf_files:
+                pdf_merger.append(pdf_file)
+
+            pdf_merger.write(output_file)
+            pdf_merger.close()
+
+            QMessageBox.information(self, "Success", "PDFs combined successfully.")
+            self.clear_list()
+            self.output_edit.clear()
+            self.update_list()
+
+    def update_list(self):
+        self.pdf_list_widget.clear()
+        self.pdf_list_widget.addItems([os.path.basename(pdf_file) for pdf_file in pdf_files])
+
+    def show_about_dialog(self):
+        about_dialog = QDialog(self)
+        about_dialog.setWindowTitle("About PDF Compiler")
+        about_dialog.setGeometry(200, 200, 400, 200)
+        layout = VBoxLayout(about_dialog)
+
+        version_label = QLabel("Version: 3.0", about_dialog)
+        name_label = QLabel("Name: PDF Compiler", about_dialog)
+        copyright_label = QLabel("Copyright © 2023 Morales Research Inc and Erick Suarez", about_dialog)
+        release_label = QLabel("Released on September 3, 2023", about_dialog)
+
+        layout.addWidget(name_label)
+        layout.addWidget(version_label)
+        layout.addWidget(copyright_label)
+        layout.addWidget(release_label)
+
+        about_dialog.exec_()
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = PDFCompiler()
+    window.show()
+    sys.exit(app.exec_())
