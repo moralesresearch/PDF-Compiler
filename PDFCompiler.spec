@@ -47,7 +47,7 @@ app = BUNDLE(
     name='PDF Compiler.app',
     icon=None,
     bundle_identifier=None,
-    version='2.0',
+    version='1.1.2',
     info_plist={
             'NSPrincipalClass': 'NSApplication',
             'NSAppleScriptEnabled': False,

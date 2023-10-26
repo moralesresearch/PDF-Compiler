@@ -1,142 +1,150 @@
-import sys
-import os
 import PyPDF2
-from PyPDF2 import PdfFileMerger
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QListWidget, QLabel, QLineEdit, \
-    QFileDialog, QMessageBox, QAction, QMenuBar, QDialog, QVBoxLayout as VBoxLayout
+import os
+import tkinter as tk
+from tkinter import filedialog
+from tkinter import messagebox
 
-# Global list to store PDF file paths
-pdf_files = []
+def combine_pdfs():
+    pdf_files = pdf_list.get(0, tk.END)
+    if not pdf_files:
+        result_label.config(text="No PDF files to combine.")
+        return
 
+    # Create a PDF writer object
+    pdf_writer = PyPDF2.PdfWriter()
 
-class PDFCompiler(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        self.setWindowTitle("PDF Compiler")
-        self.setGeometry(100, 100, 800, 600)
-
-        self.central_widget = QWidget(self)
-        self.setCentralWidget(self.central_widget)
-
-        # List to display PDF file names
-        self.pdf_list_widget = QListWidget(self)
-
-        # Output file name input
-        self.output_label = QLabel("Output File Name:", self)
-        self.output_edit = QLineEdit(self)
-
-        self.init_ui()
-
-    def init_ui(self):
-        # Layouts
-        layout = QVBoxLayout(self.central_widget)
-
-        # Add widgets to layouts
-        layout.addWidget(self.pdf_list_widget)
-        layout.addWidget(self.output_label)
-        layout.addWidget(self.output_edit)
-
-        # Create a menu bar
-        menubar = self.menuBar()
-        file_menu = menubar.addMenu("File")
-        help_menu = menubar.addMenu("Help")
-
-        # Add actions to the File menu
-        add_action = QAction("Add PDF", self)
-        remove_action = QAction("Remove PDF", self)
-        clear_action = QAction("Clear List", self)
-        combine_action = QAction("Combine PDFs", self)
-        exit_action = QAction("Exit", self)
-
-        file_menu.addAction(add_action)
-        file_menu.addAction(remove_action)
-        file_menu.addAction(clear_action)
-        file_menu.addAction(combine_action)
-        file_menu.addAction(exit_action)
-
-        # Add action to the Help menu for "About"
-        about_action = QAction("About", self)
-        help_menu.addAction(about_action)
-
-        # Connect actions to functions
-        add_action.triggered.connect(self.add_pdf)
-        remove_action.triggered.connect(self.remove_pdf)
-        clear_action.triggered.connect(self.clear_list)
-        combine_action.triggered.connect(self.combine_pdfs)
-        exit_action.triggered.connect(self.close)
-
-        # Connect "About" action to display the about dialog
-        about_action.triggered.connect(self.show_about_dialog)
-
-    def add_pdf(self):
-        options = QFileDialog.Options()
-        options |= QFileDialog.ReadOnly
-        file_dialog = QFileDialog(self, options=options)
-        file_dialog.setNameFilter("PDF Files (*.pdf)")
-        file_paths, _ = file_dialog.getOpenFileNames()
-
-        if file_paths:
-            pdf_files.extend(file_paths)
-            self.update_list()
-
-    def remove_pdf(self):
-        selected_item = self.pdf_list_widget.currentItem()
-
-        if selected_item:
-            pdf_files.pop(self.pdf_list_widget.row(selected_item))
-            self.pdf_list_widget.takeItem(self.pdf_list_widget.row(selected_item))
-
-    def clear_list(self):
-        pdf_files.clear()
-        self.pdf_list_widget.clear()
-
-    def combine_pdfs(self):
-        if not pdf_files:
-            QMessageBox.warning(self, "Warning", "No PDFs selected.")
+    # Loop through each PDF file and add its pages to the writer
+    for pdf_name in pdf_files:
+        pdf_path = pdf_paths[pdf_name]
+        try:
+            pdf_reader = PyPDF2.PdfReader(pdf_path)
+            for page_num in range(len(pdf_reader.pages)):
+                pdf_writer.add_page(pdf_reader.pages[page_num])
+        except Exception as e:
+            result_label.config(text=f"Error reading {pdf_name}. {str(e)}")
             return
 
-        output_file, _ = QFileDialog.getSaveFileName(self, "Save As", "", "PDF Files (*.pdf)")
+    # Determine the output folder (Desktop)
+    output_folder = os.path.expanduser("~/Desktop")
 
-        if output_file:
-            pdf_merger = PdfFileMerger()
+    # Use the specified output filename or default to 'combined.pdf'
+    output_filename = output_filename_entry.get() or 'combined.pdf'
+    output_pdf = os.path.join(output_folder, output_filename)
+    
+    # PDF Compression
+    if compress_pdf_var.get():
+        for page_num in range(len(pdf_writer.pages)):
+            page = pdf_writer.pages[page_num]
+            page.compressContentStreams()
 
-            for pdf_file in pdf_files:
-                pdf_merger.append(pdf_file)
+    # Save the combined PDF
+    try:
+        with open(output_pdf, 'wb') as output_file:
+            pdf_writer.write(output_file)
+        result_label.config(text="PDFs combined successfully!")
+    except Exception as e:
+        result_label.config(text=f"Error saving PDF. {str(e)}")
 
-            pdf_merger.write(output_file)
-            pdf_merger.close()
+def add_pdf():
+    file_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
+    if file_path:
+        file_name = os.path.basename(file_path)
+        pdf_list.insert(tk.END, file_name)
+        pdf_paths[file_name] = file_path
 
-            QMessageBox.information(self, "Success", "PDFs combined successfully.")
-            self.clear_list()
-            self.output_edit.clear()
-            self.update_list()
+def remove_selected():
+    selected_indices = pdf_list.curselection()
+    for index in selected_indices[::-1]:
+        pdf_name = pdf_list.get(index)
+        del pdf_paths[pdf_name]
+        pdf_list.delete(index)
 
-    def update_list(self):
-        self.pdf_list_widget.clear()
-        self.pdf_list_widget.addItems([os.path.basename(pdf_file) for pdf_file in pdf_files])
+def move_up():
+    selected_indices = pdf_list.curselection()
+    if not selected_indices:
+        return
+    for index in selected_indices:
+        if index > 0:
+            pdf_name = pdf_list.get(index)
+            pdf_list.delete(index)
+            pdf_list.insert(index - 1, pdf_name)
+            pdf_list.select_set(index - 1)
 
-    def show_about_dialog(self):
-        about_dialog = QDialog(self)
-        about_dialog.setWindowTitle("About PDF Compiler")
-        about_dialog.setGeometry(200, 200, 400, 200)
-        layout = VBoxLayout(about_dialog)
+def move_down():
+    selected_indices = pdf_list.curselection()
+    if not selected_indices:
+        return
+    for index in reversed(selected_indices):
+        if index < pdf_list.size() - 1:
+            pdf_name = pdf_list.get(index)
+            pdf_list.delete(index)
+            pdf_list.insert(index + 1, pdf_name)
+            pdf_list.select_set(index + 1)
 
-        version_label = QLabel("Version: 3.0", about_dialog)
-        name_label = QLabel("Name: PDF Compiler", about_dialog)
-        copyright_label = QLabel("Copyright © 2023 Morales Research Inc and Erick Suarez", about_dialog)
-        release_label = QLabel("Released on September 3, 2023", about_dialog)
+def clear_list():
+    pdf_list.delete(0, tk.END)
+    pdf_paths.clear()
 
-        layout.addWidget(name_label)
-        layout.addWidget(version_label)
-        layout.addWidget(copyright_label)
-        layout.addWidget(release_label)
+def show_about():
+    about_text = "PDF Compiler\nVersion 1.1.2\nReleased on October 26, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
+    messagebox.showinfo("About", about_text)
 
-        about_dialog.exec_()
+# Create the main window
+root = tk.Tk()
+root.title("PDF Compiler 1.1.2")
 
+# Create the menu bar
+menubar = tk.Menu(root)
+root.config(menu=menubar)
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = PDFCompiler()
-    window.show()
-    sys.exit(app.exec_())
+# Create the File menu
+file_menu = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="Add PDF File", command=add_pdf)
+file_menu.add_separator()
+file_menu.add_command(label="Exit", command=root.quit)
+
+# Create the Help menu
+help_menu = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Help", menu=help_menu)
+help_menu.add_command(label="About", command=show_about)
+
+# Create GUI elements
+pdf_list = tk.Listbox(root, selectmode=tk.MULTIPLE)
+pdf_list.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+output_filename_label = tk.Label(root, text="Output File Name:")
+output_filename_entry = tk.Entry(root)
+output_filename_label.pack(padx=10, pady=5, anchor=tk.W)
+output_filename_entry.pack(padx=10, pady=5, fill=tk.X)
+
+compress_pdf_var = tk.IntVar()
+compress_pdf_checkbox = tk.Checkbutton(root, text="Compress PDF", variable=compress_pdf_var)
+compress_pdf_checkbox.pack(padx=10, pady=5)
+
+combine_button = tk.Button(root, text="Combine PDFs", command=combine_pdfs)
+remove_button = tk.Button(
+    root, text="Remove Selected", command=remove_selected)
+clear_button = tk.Button(root, text="Clear List", command=clear_list)
+result_label = tk.Label(root, text="")
+
+combine_button.pack(side=tk.LEFT, padx=5, pady=5)
+remove_button.pack(side=tk.LEFT, padx=5, pady=5)
+clear_button.pack(side=tk.LEFT, padx=5, pady=5)
+
+move_up_button = tk.Button(root, text="Move Up", command=move_up)
+move_down_button = tk.Button(root, text="Move Down", command=move_down)
+move_up_button.pack(side=tk.LEFT, padx=5, pady=5)
+move_down_button.pack(side=tk.LEFT, padx=5, pady=5)
+
+# About button
+about_button = tk.Button(root, text="About", command=show_about)
+about_button.pack(side=tk.RIGHT, padx=5, pady=5)
+
+result_label.pack(padx=10, pady=5, fill=tk.X)
+
+# Dictionary to store file paths with displayed file names
+pdf_paths = {}
+
+# Start the GUI event loop
+root.mainloop()
