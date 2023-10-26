@@ -85,13 +85,36 @@ def clear_list():
     pdf_list.delete(0, tk.END)
     pdf_paths.clear()
 
+def  preview_pdf():
+    selected_indices = pdf_list.curselection()
+    if not selected_indices:
+        return
+    pdf_name = pdf_list.get(selected_indices[0])
+    pdf_path = pdf_paths[pdf_name]
+
+    try:
+        import fitz
+        pdf_document = fitz.open(pdf_path)
+        page = pdf_document.load_page(0)
+        image = page.get_pixmap()
+        from PIL import ImageTk, Image
+        image_tk = ImageTk.PhotoImage(Image.frombytes("RGB", [image.width, image.height], image.samples))
+
+        preview_window = tk.Toplevel(root)
+        preview_window.title(f"Preview - {pdf_name}")
+        label = tk.Label(preview_window, image=image_tk)
+        label.image = image_tk
+        label.pack(fill=tk.BOTH, expand=tk.YES)
+    except Exception as e:
+        result_label.config(text=f"Error previewing PDF: {str(e)}")
+
 def show_about():
-    about_text = "PDF Compiler\nVersion 1.1.2\nReleased on October 26, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
+    about_text = "PDF Compiler\nVersion 2.0\nReleased on November 1st, 2023\n\nCopyright © 2023 Morales Research Inc and Erick Suarez"
     messagebox.showinfo("About", about_text)
 
 # Create the main window
 root = tk.Tk()
-root.title("PDF Compiler 1.1.2")
+root.title("PDF Compiler 2.0")
 
 # Create the menu bar
 menubar = tk.Menu(root)
@@ -136,6 +159,9 @@ move_up_button = tk.Button(root, text="Move Up", command=move_up)
 move_down_button = tk.Button(root, text="Move Down", command=move_down)
 move_up_button.pack(side=tk.LEFT, padx=5, pady=5)
 move_down_button.pack(side=tk.LEFT, padx=5, pady=5)
+
+preview_button = tk.Button(root, text="Preview PDF", command=preview_pdf)
+preview_button.pack(side=tk.LEFT, padx=5, pady=5)
 
 # About button
 about_button = tk.Button(root, text="About", command=show_about)
