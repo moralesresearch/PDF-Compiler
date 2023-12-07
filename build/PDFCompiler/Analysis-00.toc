@@ -511,11 +511,11 @@
   ('tracemalloc',
    '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/tracemalloc.py',
    'PYMODULE'),
-  ('_py_abc',
-   '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/_py_abc.py',
-   'PYMODULE'),
   ('stringprep',
    '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/stringprep.py',
+   'PYMODULE'),
+  ('_py_abc',
+   '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/_py_abc.py',
    'PYMODULE'),
   ('PyPDF3',
    '/Volumes/Austin '
@@ -642,17 +642,29 @@
  [('Python.framework/Versions/3.12/Python',
    '/Library/Frameworks/Python.framework/Versions/3.12/Python',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqmacheif.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqicns.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqmacheif.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqicns.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqjpeg.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqtga.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqjpeg.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqtga.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/platforms/libqminimal.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqwebp.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/platforms/libqminimal.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqwebp.dylib',
+   'BINARY'),
+  ('PyQt6/Qt6/plugins/imageformats/libqwbmp.dylib',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqwbmp.dylib',
+   'BINARY'),
+  ('PyQt6/Qt6/plugins/generic/libqtuiotouchplugin.dylib',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/generic/libqtuiotouchplugin.dylib',
+   'BINARY'),
+  ('PyQt6/Qt6/plugins/imageformats/libqsvg.dylib',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqsvg.dylib',
    'BINARY'),
   ('PyQt6/Qt6/plugins/platforms/libqcocoa.dylib',
    '/Volumes/Austin '
@@ -666,49 +678,37 @@
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/iconengines/libqsvgicon.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqwebp.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqmacheif.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqwebp.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqmacheif.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqico.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqjpeg.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqico.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqjpeg.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqsvg.dylib',
+  ('PyQt6/Qt6/plugins/platforms/libqminimal.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqsvg.dylib',
-   'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqtga.dylib',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqtga.dylib',
-   'BINARY'),
-  ('PyQt6/Qt6/plugins/platforms/libqoffscreen.dylib',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/platforms/libqoffscreen.dylib',
-   'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqwbmp.dylib',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqwbmp.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/platforms/libqminimal.dylib',
    'BINARY'),
   ('PyQt6/Qt6/plugins/imageformats/libqtiff.dylib',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqtiff.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqicns.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqpdf.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqicns.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqpdf.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/generic/libqtuiotouchplugin.dylib',
+  ('PyQt6/Qt6/plugins/imageformats/libqico.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/generic/libqtuiotouchplugin.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqico.dylib',
    'BINARY'),
   ('PyQt6/Qt6/plugins/imageformats/libqgif.dylib',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqgif.dylib',
    'BINARY'),
-  ('PyQt6/Qt6/plugins/imageformats/libqpdf.dylib',
+  ('PyQt6/Qt6/plugins/platforms/libqoffscreen.dylib',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/imageformats/libqpdf.dylib',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/plugins/platforms/libqoffscreen.dylib',
    'BINARY'),
   ('PyQt6/Qt6/plugins/styles/libqmacstyle.dylib',
    '/Volumes/Austin '
@@ -828,9 +828,6 @@
   ('lib-dynload/fcntl.cpython-312-darwin.so',
    '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/fcntl.cpython-312-darwin.so',
    'EXTENSION'),
-  ('lib-dynload/_heapq.cpython-312-darwin.so',
-   '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_heapq.cpython-312-darwin.so',
-   'EXTENSION'),
   ('lib-dynload/_multibytecodec.cpython-312-darwin.so',
    '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_multibytecodec.cpython-312-darwin.so',
    'EXTENSION'),
@@ -851,6 +848,9 @@
    'EXTENSION'),
   ('lib-dynload/_codecs_hk.cpython-312-darwin.so',
    '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_codecs_hk.cpython-312-darwin.so',
+   'EXTENSION'),
+  ('lib-dynload/_heapq.cpython-312-darwin.so',
+   '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_heapq.cpython-312-darwin.so',
    'EXTENSION'),
   ('lib-dynload/_uuid.cpython-312-darwin.so',
    '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_uuid.cpython-312-darwin.so',
@@ -883,13 +883,13 @@
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/lib/QtGui.framework/Versions/A/QtGui',
    'BINARY'),
-  ('PyQt6/Qt6/lib/QtSvg.framework/Versions/A/QtSvg',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/lib/QtSvg.framework/Versions/A/QtSvg',
-   'BINARY'),
   ('PyQt6/Qt6/lib/QtNetwork.framework/Versions/A/QtNetwork',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/lib/QtNetwork.framework/Versions/A/QtNetwork',
+   'BINARY'),
+  ('PyQt6/Qt6/lib/QtSvg.framework/Versions/A/QtSvg',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/lib/QtSvg.framework/Versions/A/QtSvg',
    'BINARY'),
   ('PyQt6/Qt6/lib/QtPdf.framework/Versions/A/QtPdf',
    '/Volumes/Austin '
@@ -915,369 +915,369 @@
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/build/PDFCompiler/base_library.zip',
    'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_hr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_hr.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_ja.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ja.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_nl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_nl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_fr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_fr.qm',
-   'DATA'),
   ('PyQt6/Qt6/translations/qt_bg.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_bg.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_en.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_en.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_nn.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_nn.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_fa.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_fa.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_ja.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ja.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_sl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_sl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_hu.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_hu.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_fi.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_fi.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_it.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_it.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_fr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_fr.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_sk.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_sk.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_zh_CN.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_zh_CN.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_gl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_gl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_fa.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_fa.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_tr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_tr.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_ar.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ar.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_ca.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ca.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_de.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_de.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_hu.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_hu.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_sk.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_sk.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_ar.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ar.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_en.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_en.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_pl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_pl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_es.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_es.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_ru.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ru.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_sl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_sl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_es.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_es.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_de.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_de.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_nl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_nl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_tr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_tr.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_fi.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_fi.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_ko.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ko.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_nl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_nl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_uk.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_uk.qm',
    'DATA'),
   ('PyQt6/Qt6/translations/qtbase_pl.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_pl.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_en.qm',
+  ('PyQt6/Qt6/translations/qt_uk.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_en.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_uk.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_sv.qm',
+  ('PyQt6/Qt6/translations/qt_fi.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_sv.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_gl.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_gl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_lv.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_lv.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_ja.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ja.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_ko.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ko.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_da.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_da.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_ca.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ca.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_cs.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_cs.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_sk.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_sk.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_cs.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_cs.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_zh_TW.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_zh_TW.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_fr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_fr.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_nn.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_nn.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_it.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_it.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_fi.qm',
    'DATA'),
   ('PyQt6/Qt6/translations/qt_lt.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_lt.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_ru.qm',
+  ('PyQt6/Qt6/translations/qtbase_hr.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ru.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_hr.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_es.qm',
+  ('PyQt6/Qt6/translations/qt_help_sl.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_es.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_sl.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_pt_BR.qm',
+  ('PyQt6/Qt6/translations/qt_hu.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_pt_BR.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_hu.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_pl.qm',
+  ('PyQt6/Qt6/translations/qt_cs.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_pl.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_pt_BR.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_pt_BR.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_ca.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ca.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_hu.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_hu.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_cs.qm',
    'DATA'),
   ('PyQt6/Qt6/translations/qtbase_cs.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_cs.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_da.qm',
+  ('PyQt6/Qt6/translations/qt_help_ca.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_da.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ca.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_gd.qm',
+  ('PyQt6/Qt6/translations/qt_help_gl.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_gd.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_ru.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ru.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_de.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_de.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_it.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_it.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_zh_CN.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_zh_CN.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_tr.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_tr.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_bg.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_bg.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_pt_BR.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_pt_BR.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_lv.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_lv.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_gl.qm',
    'DATA'),
   ('PyQt6/Qt6/translations/qt_help_ko.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ko.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_pt_PT.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_pt_PT.qm',
-   'DATA'),
   ('PyQt6/Qt6/translations/qtbase_bg.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_bg.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_da.qm',
+  ('PyQt6/Qt6/translations/qt_help_ja.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_da.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ja.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qt_nn.qm',
+  ('PyQt6/Qt6/translations/qt_sl.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_nn.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_sl.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_gd.qm',
+  ('PyQt6/Qt6/translations/qt_nl.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_gd.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_nl.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_uk.qm',
+  ('PyQt6/Qt6/translations/qt_help_da.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_uk.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_zh_TW.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_zh_TW.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_ar.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ar.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_he.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_he.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_zh_TW.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_zh_TW.qm',
-   'DATA'),
-  ('PyQt6/Qt6/translations/qt_help_uk.qm',
-   '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_uk.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_da.qm',
    'DATA'),
   ('PyQt6/Qt6/translations/qt_help_hr.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_hr.qm',
    'DATA'),
-  ('PyQt6/Qt6/translations/qtbase_he.qm',
+  ('PyQt6/Qt6/translations/qtbase_nn.qm',
    '/Volumes/Austin '
-   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_he.qm',
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_nn.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_en.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_en.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_bg.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_bg.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_sk.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_sk.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_ko.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ko.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_nl.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_nl.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_sk.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_sk.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_pt_BR.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_pt_BR.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_fa.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_fa.qm',
    'DATA'),
   ('PyQt6/Qt6/translations/qtbase_zh_CN.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_zh_CN.qm',
    'DATA'),
+  ('PyQt6/Qt6/translations/qt_pt_PT.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_pt_PT.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_ca.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ca.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_en.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_en.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_nl.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_nl.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_fr.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_fr.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_ko.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ko.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_ja.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ja.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_tr.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_tr.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_zh_CN.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_zh_CN.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_hu.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_hu.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_ru.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ru.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_ar.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ar.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_pt_BR.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_pt_BR.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_pl.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_pl.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_ru.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_ru.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_ru.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ru.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_zh_TW.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_zh_TW.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_gd.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_gd.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_nn.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_nn.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_pt_BR.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_pt_BR.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_it.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_it.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_pl.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_pl.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_he.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_he.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_fi.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_fi.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_fr.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_fr.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_es.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_es.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_lv.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_lv.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_sv.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_sv.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_it.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_it.qm',
+   'DATA'),
   ('PyQt6/Qt6/translations/qt_hr.qm',
    '/Volumes/Austin '
    'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_hr.qm',
    'DATA'),
+  ('PyQt6/Qt6/translations/qt_sk.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_sk.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_nn.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_nn.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_da.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_da.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_uk.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_uk.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_zh_CN.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_zh_CN.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_tr.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_tr.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_es.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_es.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_de.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_de.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_de.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_de.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_tr.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_tr.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_es.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_es.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_fr.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_fr.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_zh_TW.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_zh_TW.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_ar.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_ar.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_de.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_de.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_gl.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_gl.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_ar.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ar.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_da.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_da.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_ja.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ja.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_it.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_it.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_cs.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_cs.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_lv.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_lv.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_en.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_en.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_ca.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_ca.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_zh_TW.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_zh_TW.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_hu.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_hu.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_gd.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_gd.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_fa.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_fa.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qt_help_uk.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qt_help_uk.qm',
+   'DATA'),
+  ('PyQt6/Qt6/translations/qtbase_he.qm',
+   '/Volumes/Austin '
+   'Disk/Projects/PDF-Compiler/venv/lib/python3.12/site-packages/PyQt6/Qt6/translations/qtbase_he.qm',
+   'DATA'),
   ('Python', 'Python.framework/Versions/3.12/Python', 'SYMLINK'),
   ('QtCore', 'PyQt6/Qt6/lib/QtCore.framework/Versions/A/QtCore', 'SYMLINK'),
   ('QtGui', 'PyQt6/Qt6/lib/QtGui.framework/Versions/A/QtGui', 'SYMLINK'),
-  ('QtSvg', 'PyQt6/Qt6/lib/QtSvg.framework/Versions/A/QtSvg', 'SYMLINK'),
   ('QtNetwork',
    'PyQt6/Qt6/lib/QtNetwork.framework/Versions/A/QtNetwork',
    'SYMLINK'),
+  ('QtSvg', 'PyQt6/Qt6/lib/QtSvg.framework/Versions/A/QtSvg', 'SYMLINK'),
   ('QtPdf', 'PyQt6/Qt6/lib/QtPdf.framework/Versions/A/QtPdf', 'SYMLINK'),
   ('QtWidgets',
    'PyQt6/Qt6/lib/QtWidgets.framework/Versions/A/QtWidgets',

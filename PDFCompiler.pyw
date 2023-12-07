@@ -77,7 +77,7 @@ class PDFCompiler(QMainWindow):
             self.result_label.setText("PDF combining cancelled.")
 
     def show_about_dialog(self):
-        QMessageBox.about(self, "About PDF Compiler", "PDF Compiler\nVersion 2.0\nCopyright 2023 Morales Research Inc")
+        QMessageBox.about(self, "About PDF Compiler", "PDF Compiler\nVersion 2.0\nReleased Dec 7, 2023\nCopyright 2023 Morales Research Inc")
 
 if __name__ == '__main__':
     app = QApplication([])
