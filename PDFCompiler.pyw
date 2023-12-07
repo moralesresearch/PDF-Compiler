@@ -1,23 +1,29 @@
-import PyPDF3
+import sys
 import os
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QListWidget, QLabel, QFileDialog, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QPushButton, QListWidget, QLabel, QFileDialog, QMessageBox
+from PyQt6.QtGui import QAction
+import PyPDF3
 
-class PDFCompiler(QWidget):
+class PDFCompiler(QMainWindow):
     def __init__(self):
         super().__init__()
         self.pdf_paths = {}
         self.initUI()
 
     def initUI(self):
-        # Set up the layout
-        layout = QVBoxLayout(self)
+        # Create a central widget and set the layout
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        layout = QVBoxLayout(central_widget)
+
+        # Set the window title
         self.setWindowTitle("PDF Compiler 2.0")
 
         # Create and add widgets to the layout
-        self.pdf_list = QListWidget(self)
-        add_button = QPushButton('Add PDFs', self)
-        combine_button = QPushButton('Combine PDFs', self)
-        self.result_label = QLabel('', self)
+        self.pdf_list = QListWidget(central_widget)
+        add_button = QPushButton('Add PDFs', central_widget)
+        combine_button = QPushButton('Combine PDFs', central_widget)
+        self.result_label = QLabel('', central_widget)
 
         # Add widgets to the layout
         layout.addWidget(self.pdf_list)
@@ -28,6 +34,16 @@ class PDFCompiler(QWidget):
         # Connect the button click events
         add_button.clicked.connect(self.add_pdfs)
         combine_button.clicked.connect(self.combine_pdfs)
+
+        # Create About action
+        about_action = QAction('About', self)
+        about_action.triggered.connect(self.show_about_dialog)
+
+        # Add About action to the application menu on macOS
+        if sys.platform == "darwin":
+            menu_bar = self.menuBar()
+            app_menu = menu_bar.addMenu('&App')
+            app_menu.addAction(about_action)
 
     def add_pdfs(self):
         files, _ = QFileDialog.getOpenFileNames(self, "Select PDFs", "", "PDF Files (*.pdf)")
@@ -60,9 +76,11 @@ class PDFCompiler(QWidget):
         else:
             self.result_label.setText("PDF combining cancelled.")
 
+    def show_about_dialog(self):
+        QMessageBox.about(self, "About PDF Compiler", "PDF Compiler\nVersion 2.0\nCopyright 2023 Morales Research Inc")
+
 if __name__ == '__main__':
     app = QApplication([])
     ex = PDFCompiler()
-    ex.resize(400, 300)
     ex.show()
     app.exec()
