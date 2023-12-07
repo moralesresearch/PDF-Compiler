@@ -1,0 +1,3 @@
+([('PDF Compiler',
+   '/Volumes/Austin Disk/Projects/PDF-Compiler/dist/PDF Compiler',
+   'EXECUTABLE')],)
