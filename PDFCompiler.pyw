@@ -1,8 +1,28 @@
 import sys
 import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QPushButton, QListWidget, QLabel, QFileDialog, QMessageBox
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QDragEnterEvent, QDropEvent
+from PyQt6.QtCore import Qt
 import PyPDF3
+
+os.environ['QT_MAC_WANTS_LAYER'] = '1'
+
+class DraggableListWidget(QListWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setAcceptDrops(True)
+
+    def dragEnterEvent(self, event: QDragEnterEvent):
+        if event.mimeData().hasUrls():
+            event.acceptProposedAction()
+
+    def dropEvent(self, event: QDropEvent):
+        for url in event.mimeData().urls():
+            if url.isLocalFile():
+                file_path = url.toLocalFile()
+                if file_path.endswith('.pdf'):
+                    self.addItem(os.path.basename(file_path))
+                    self.window().pdf_paths[os.path.basename(file_path)] = file_path
 
 class PDFCompiler(QMainWindow):
     def __init__(self):
@@ -17,13 +37,13 @@ class PDFCompiler(QMainWindow):
         layout = QVBoxLayout(central_widget)
 
         # Set the window title
-        self.setWindowTitle("PDF Compiler 2.0")
+        self.setWindowTitle("PDF Compiler")
 
         # Create and add widgets to the layout
-        self.pdf_list = QListWidget(central_widget)
-        add_button = QPushButton('Add PDFs', central_widget)
-        combine_button = QPushButton('Combine PDFs', central_widget)
-        self.result_label = QLabel('', central_widget)
+        self.pdf_list = DraggableListWidget(self)
+        add_button = QPushButton('Add PDFs', self)
+        combine_button = QPushButton('Combine PDFs', self)
+        self.result_label = QLabel('', self)
 
         # Add widgets to the layout
         layout.addWidget(self.pdf_list)
@@ -65,7 +85,7 @@ class PDFCompiler(QMainWindow):
         for pdf_path in pdf_files:
             pdf_reader = PyPDF3.PdfFileReader(pdf_path)
             for page in range(pdf_reader.numPages):
-                pdf_writer.addPage(pdf_reader.getPage(page))
+                pdf_writer.add_page(pdf_reader.getPage(page))
 
         # Save the combined PDF
         output_filename, _ = QFileDialog.getSaveFileName(self, "Save Combined PDF", "", "PDF Files (*.pdf)")
@@ -77,10 +97,11 @@ class PDFCompiler(QMainWindow):
             self.result_label.setText("PDF combining cancelled.")
 
     def show_about_dialog(self):
-        QMessageBox.about(self, "About PDF Compiler", "PDF Compiler\nVersion 2.0\nReleased Dec 7, 2023\nCopyright 2023 Morales Research Inc")
+        QMessageBox.about(self, "About PDF Compiler", "PDF Compiler\nVersion 1.0\nCopyright 2023")
 
 if __name__ == '__main__':
     app = QApplication([])
     ex = PDFCompiler()
     ex.show()
     app.exec()
+

@@ -1,6 +1,6 @@
-# PDF Compiler version 2.0
-A Python GUI program that compiles multiple PDF files into one PDF. We have rewritten the user interface from the 
-built-in Python's tkinter library to PyQt6 instead as we shift to more complex code integration and writing.
+# PDF Compiler version 2.0.1
+A Python GUI program that compiles multiple PDF files into one PDF. Small improvements have been added such as drag-n'
+-drop.
 
 ## Release 1.1
 Initial introduction of PDF Compiler v1.0 under the 1.1 git versioning system. This version introduces the core and 

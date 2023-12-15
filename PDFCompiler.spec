@@ -47,11 +47,11 @@ app = BUNDLE(
     name='PDF Compiler.app',
     icon=None,
     bundle_identifier=None,
-    version='2.0',
+    version='2.0.1',
     info_plist={
             'NSPrincipalClass': 'NSApplication',
             'NSAppleScriptEnabled': False,
-            'NSHumanReadableCopyright': '2023 © Morales Research Inc',
-            'CFBundleGetInfoString': '2023 © Morales Research Inc',
+            'NSHumanReadableCopyright': '1977 - 2023 © Morales Research Inc',
+            'CFBundleGetInfoString': '1977 - 2023 © Morales Research Inc',
             }
 )
