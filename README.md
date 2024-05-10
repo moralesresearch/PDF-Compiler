@@ -1,6 +1,7 @@
-# PDF Compiler version 2.0
-A Python GUI program that compiles multiple PDF files into one PDF. We have rewritten the user interface from the 
-built-in Python's tkinter library to PyQt6 instead as we shift to more complex code integration and writing.
+# PDF Compiler version 3.0
+A Java program (that uses AWT/Swing as the GUI) that compiles multiple PDF files into one PDF. We have rewritten the whole
+code base from our Python source code to Java, for the application to become operating system independent and easier to create
+binaries for all platforms. No new features are introduced in this version.
 
 ## Release 1.1
 Initial introduction of PDF Compiler v1.0 under the 1.1 git versioning system. This version introduces the core and 
@@ -15,4 +16,9 @@ Introduce a preview window for the PDFs, page selection, merge specific pages (f
 functionality. A rewrite of the user interface from tkinter (Python's default library) to PyQt 6, as our code becomes a 
 bit more complex. Removal of PDF compression (for now).
 
-(c) 2023 Morales Research Inc
+## Release 3.0 (Spring 2024)
+We have rewritten the whole code base from our Python source code to Java, for the application to become operating system independent and easier to create binaries for all platforms. No new features are introduced in this version. Some features
+from previous versions may not be working due to the rewrite, but will be implemented in 3.x versions in the upcoming months.
+
+(c) 2023 - 2024 Morales Research Inc
+(c) 2023 - 2025 The University of Texas at Austin, Department of Computer Science
