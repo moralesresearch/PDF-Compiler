@@ -21,4 +21,5 @@ We have rewritten the whole code base from our Python source code to Java, for t
 from previous versions may not be working due to the rewrite, but will be implemented in 3.x versions in the upcoming months.
 
 (c) 2023 - 2024 Morales Research Inc
+
 (c) 2023 - 2025 The University of Texas at Austin, Department of Computer Science
