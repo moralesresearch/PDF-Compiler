@@ -3,6 +3,11 @@ A Java program (that uses AWT/Swing as the GUI) that compiles multiple PDF files
 code base from our Python source code to Java, for the application to become operating system independent and easier to create
 binaries for all platforms. No new features are introduced in this version.
 
+**System Requirements:**
+- <a href="java.com">Oracle Java Runtime</a> (version 11 or higher)
+- Windows 7 or later; MacOS X 10.6 and later; Linux with a graphical interface.
+- Memory: 512MB (minimum)
+
 ## Release 1.1
 Initial introduction of PDF Compiler v1.0 under the 1.1 git versioning system. This version introduces the core and 
 essential parts of a functioning PDF combiner for multiple files.
