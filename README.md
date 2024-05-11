@@ -4,7 +4,7 @@ code base from our Python source code to Java, for the application to become ope
 binaries for all platforms. No new features are introduced in this version.
 
 **System Requirements:**
-- <a href="java.com">Oracle Java Runtime</a> (version 11 or higher)
+- <a href="https://java.com/">Oracle Java Runtime</a> (version 11 or higher)
 - Windows 7 or later; MacOS X 10.6 and later; Linux with a graphical interface.
 - Memory: 512MB (minimum)
 
