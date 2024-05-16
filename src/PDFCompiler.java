@@ -86,6 +86,7 @@ import org.apache.pdfbox.multipdf.PDFMergerUtility;
  * program is to compress/combine PDFs into one.
  * 
  * @author Abdon Morales (abdonm@cs.utexas.edu)
+ * @version 3.1
  */
 public class PDFCompiler extends JFrame {
     private JList<String> pdfList;
@@ -263,10 +264,15 @@ public class PDFCompiler extends JFrame {
                     public void handleAbout(java.awt.desktop.AboutEvent e) {
                         JOptionPane.showMessageDialog(
                                 null,
-                                "PDF Compiler\nVersion 3.1 (Spring 2024)\n" +
-                                        "Released May 16, 2024\nCopyright (C) 2024 Morales Research " +
-                                        "Technology Inc\nCopyright (C) 2023 - 24 The University of Texas at " +
-                                        "Austin,\nDepartment of Computer Science",
+                                """
+                                        PDF Compiler
+                                        Version 3.1
+                                        Released May 16, 2024
+                                        Copyright (C) 2024 Morales Research \
+                                        Technology Inc
+                                        Copyright (C) 2023 - 24 The University of Texas at \
+                                        Austin,
+                                        Department of Computer Science""",
                                 "About PDF Compiler",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
@@ -281,7 +287,7 @@ public class PDFCompiler extends JFrame {
      * @author Abdon Morales (abdonm@cs.utexas.edu)
      */
     public static void main(String[] args) {
-        System.setProperty("apple.awt.application", "PDF Compiler");
+        System.setProperty("apple.awt.application.name", "PDF Compiler");
         SwingUtilities.invokeLater(() -> {
             PDFCompiler pdfCompiler = new PDFCompiler();
             pdfCompiler.setVisible(true);

@@ -1,4 +1,4 @@
-# PDF Compiler version 3.0
+# PDF Compiler version 3.1
 A Java program (that uses AWT/Swing as the GUI) that compiles multiple PDF files into one PDF. We have rewritten the whole
 code base from our Python source code to Java, for the application to become operating system independent and easier to create
 binaries for all platforms. No new features are introduced in this version.
