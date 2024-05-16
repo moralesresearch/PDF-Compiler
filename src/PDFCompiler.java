@@ -63,7 +63,14 @@ License Terms and Conditions:
  */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.desktop.AboutHandler;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -79,6 +86,7 @@ import org.apache.pdfbox.multipdf.PDFMergerUtility;
  * program is to compress/combine PDFs into one.
  * 
  * @author Abdon Morales (abdonm@cs.utexas.edu)
+ * @version 3.1
  */
 public class PDFCompiler extends JFrame {
     private JList<String> pdfList;
@@ -103,7 +111,7 @@ public class PDFCompiler extends JFrame {
      * "actions"/clicks.
      */
     private void initUI() {
-        setTitle("PDF Compiler 3.0");
+        setTitle("PDF Compiler 3.1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
 
@@ -117,6 +125,37 @@ public class PDFCompiler extends JFrame {
         JButton addButton = new JButton("Add PDFs");
         JButton combineButton = new JButton("Combine PDFs");
         resultLabel = new JLabel("");
+
+        /* Adding drag -n- drop file support */
+        new DropTarget(pdfList, new DropTargetListener() {
+            @Override
+            public void dragEnter(DropTargetDragEvent dtde) {}
+
+            @Override
+            public void dragOver(DropTargetDragEvent dtde) {}
+
+            @Override
+            public void dropActionChanged(DropTargetDragEvent dtde) {}
+
+            @Override
+            public void dragExit(DropTargetEvent dte) {}
+
+            @Override
+            public void drop(DropTargetDropEvent dtde) {
+                try {
+                    dtde.acceptDrop(DnDConstants.ACTION_COPY);
+                    List<File> droppedFiles = (List<File>) dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    for (File file : droppedFiles) {
+                        if (file.getName().endsWith(".pdf")) {
+                            pdfListModel.addElement(file.getName());
+                            pdfPaths.put(file.getName(), file);
+                        }
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         // Add components to layout
         JPanel buttonPanel = new JPanel();
@@ -225,10 +264,15 @@ public class PDFCompiler extends JFrame {
                     public void handleAbout(java.awt.desktop.AboutEvent e) {
                         JOptionPane.showMessageDialog(
                                 null,
-                                "PDF Compiler\nVersion 3.0 (Spring 2024)\n" +
-                                        "Released May 10, 2024\nCopyright (C) 2024 Morales Research " +
-                                        "Technology Inc\nCopyright (C) 2023 - 24 The University of Texas at " +
-                                        "Austin,\nDepartment of Computer Science",
+                                """
+                                        PDF Compiler
+                                        Version 3.1
+                                        Released May 16, 2024
+                                        Copyright (C) 2024 Morales Research \
+                                        Technology Inc
+                                        Copyright (C) 2023 - 24 The University of Texas at \
+                                        Austin,
+                                        Department of Computer Science""",
                                 "About PDF Compiler",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
@@ -243,6 +287,7 @@ public class PDFCompiler extends JFrame {
      * @author Abdon Morales (abdonm@cs.utexas.edu)
      */
     public static void main(String[] args) {
+        System.setProperty("apple.awt.application.name", "PDF Compiler");
         SwingUtilities.invokeLater(() -> {
             PDFCompiler pdfCompiler = new PDFCompiler();
             pdfCompiler.setVisible(true);

@@ -1,7 +1,7 @@
-# PDF Compiler version 3.0
+# PDF Compiler version 3.1
 A Java program (that uses AWT/Swing as the GUI) that compiles multiple PDF files into one PDF. We have rewritten the whole
 code base from our Python source code to Java, for the application to become operating system independent and easier to create
-binaries for all platforms. No new features are introduced in this version.
+binaries for all platforms.
 
 **System Requirements:**
 - <a href="https://java.com/">Oracle Java Runtime</a> (version 11 or higher)
@@ -12,7 +12,7 @@ binaries for all platforms. No new features are introduced in this version.
 Initial introduction of PDF Compiler v1.0 under the 1.1 git versioning system. This version introduces the core and 
 essential parts of a functioning PDF combiner for multiple files.
 
-## Release 1.1.2
+### Release 1.1.2
 Implements the functionality of PDF compression of the dummy checkbox "PDF compression" and makes minor changes in moving
 documents up and down the list
 
@@ -24,6 +24,9 @@ bit more complex. Removal of PDF compression (for now).
 ## Release 3.0 (Spring 2024)
 We have rewritten the whole code base from our Python source code to Java, for the application to become operating system independent and easier to create binaries for all platforms. No new features are introduced in this version. Some features
 from previous versions may not be working due to the rewrite, but will be implemented in 3.x versions in the upcoming months.
+
+### Release 3.1 (Part of Spring 2024)
+Rewrote drag-n-drop in Java for PDF Compiler to easily drag and drop files. Squashed some bugs.
 
 (c) 2023 - 2024 Morales Research Inc
 
