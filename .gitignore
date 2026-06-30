@@ -1,3 +1,5 @@
 out/
 .DS_Store
-.github
+.claude/
+build/
+*.class

@@ -1,0 +1,74 @@
+name: Release
+
+# Automated releases: pushing a version tag (e.g. v3.2) compiles the program,
+# bundles a self-contained runnable JAR (PDF Compiler + Apache PDFBox), and
+# publishes it as a GitHub Release asset.
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build (without the leading v), e.g. 3.2'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF_NAME#v}"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Building PDF Compiler ${VERSION}"
+
+      - name: Build self-contained runnable JAR
+        id: build
+        run: |
+          set -euo pipefail
+          VERSION="${{ steps.version.outputs.version }}"
+          ARTIFACT="PDF-Compiler-${VERSION}.jar"
+
+          mkdir -p build/fatjar
+          javac -Xlint:all -cp libs/pdfbox-app-3.0.2.jar -d build/fatjar src/PDFCompiler.java
+
+          # Unpack PDFBox into the same tree, then repack everything with our
+          # own manifest so the result is a double-clickable / runnable JAR.
+          ( cd build/fatjar && unzip -oq ../../libs/pdfbox-app-3.0.2.jar )
+          rm -f build/fatjar/META-INF/MANIFEST.MF
+
+          jar --create --file "build/${ARTIFACT}" --main-class PDFCompiler -C build/fatjar .
+
+          # Sanity checks (no GUI launch: this is a headless runner).
+          # Confirm our entry point is the manifest Main-Class and is bundled.
+          unzip -p "build/${ARTIFACT}" META-INF/MANIFEST.MF | grep -q '^Main-Class: PDFCompiler'
+          unzip -l "build/${ARTIFACT}" | grep -q 'PDFCompiler.class'
+          unzip -l "build/${ARTIFACT}" | grep -q 'org/apache/pdfbox/multipdf/PDFMergerUtility.class'
+
+          echo "artifact=build/${ARTIFACT}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: PDF Compiler ${{ steps.version.outputs.version }}
+          tag_name: v${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: ${{ steps.build.outputs.artifact }}
