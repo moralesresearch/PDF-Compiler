@@ -64,17 +64,11 @@ License Terms and Conditions:
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.desktop.AboutHandler;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetAdapter;
 import java.awt.dnd.DropTargetDropEvent;
-import java.awt.dnd.DropTargetEvent;
-import java.awt.dnd.DropTargetListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,9 +80,11 @@ import org.apache.pdfbox.multipdf.PDFMergerUtility;
  * program is to compress/combine PDFs into one.
  * 
  * @author Abdon Morales (abdonm@cs.utexas.edu)
- * @version 3.1
+ * @version 3.2
  */
 public class PDFCompiler extends JFrame {
+    private static final long serialVersionUID = 1L;
+
     private JList<String> pdfList;
     private DefaultListModel<String> pdfListModel;
     private JLabel resultLabel;
@@ -111,7 +107,7 @@ public class PDFCompiler extends JFrame {
      * "actions"/clicks.
      */
     private void initUI() {
-        setTitle("PDF Compiler 3.1");
+        setTitle("PDF Compiler 3.2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
 
@@ -127,29 +123,16 @@ public class PDFCompiler extends JFrame {
         resultLabel = new JLabel("");
 
         /* Adding drag -n- drop file support */
-        new DropTarget(pdfList, new DropTargetListener() {
+        new DropTarget(pdfList, new DropTargetAdapter() {
             @Override
-            public void dragEnter(DropTargetDragEvent dtde) {}
-
-            @Override
-            public void dragOver(DropTargetDragEvent dtde) {}
-
-            @Override
-            public void dropActionChanged(DropTargetDragEvent dtde) {}
-
-            @Override
-            public void dragExit(DropTargetEvent dte) {}
-
-            @Override
+            @SuppressWarnings("unchecked")
             public void drop(DropTargetDropEvent dtde) {
                 try {
                     dtde.acceptDrop(DnDConstants.ACTION_COPY);
-                    List<File> droppedFiles = (List<File>) dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    List<File> droppedFiles = (List<File>) dtde.getTransferable()
+                            .getTransferData(DataFlavor.javaFileListFlavor);
                     for (File file : droppedFiles) {
-                        if (file.getName().endsWith(".pdf")) {
-                            pdfListModel.addElement(file.getName());
-                            pdfPaths.put(file.getName(), file);
-                        }
+                        addPdfFile(file);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -167,22 +150,22 @@ public class PDFCompiler extends JFrame {
         contentPane.add(resultLabel, BorderLayout.NORTH);
 
         // Button actions
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addPDFs();
-            }
-        });
-        combineButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    combinePDFs();
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+        addButton.addActionListener(e -> addPDFs());
+        combineButton.addActionListener(e -> combinePDFs());
+    }
+
+    /**
+     * Adds a single file to the list if it is a PDF. The check is
+     * case-insensitive so files ending in ".PDF" are accepted too. Shared by
+     * both the "Add PDFs" file chooser and the drag-and-drop handler.
+     *
+     * @param file the file to add
+     */
+    private void addPdfFile(File file) {
+        if (file != null && file.getName().toLowerCase().endsWith(".pdf")) {
+            pdfListModel.addElement(file.getName());
+            pdfPaths.put(file.getName(), file);
+        }
     }
 
     /**
@@ -197,12 +180,8 @@ public class PDFCompiler extends JFrame {
         int result = fileChooser.showOpenDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            File[] selectedFiles = fileChooser.getSelectedFiles();
-            for (File file : selectedFiles) {
-                if (file.getName().endsWith(".pdf")) {
-                    pdfListModel.addElement(file.getName());
-                    pdfPaths.put(file.getName(), file);
-                }
+            for (File file : fileChooser.getSelectedFiles()) {
+                addPdfFile(file);
             }
         }
     }
@@ -212,7 +191,7 @@ public class PDFCompiler extends JFrame {
      * creates the literal logic for combining the PDF using an open-source Java library called
      * Apache pdfbox. [This method throws an exception if the PDF is not found in specified path.]
      */
-    private void combinePDFs() throws FileNotFoundException {
+    private void combinePDFs() {
         List<File> selectedFiles = new ArrayList<>();
         for (int i = 0; i < pdfListModel.size(); i++) {
             String fileName = pdfListModel.getElementAt(i);
@@ -228,26 +207,26 @@ public class PDFCompiler extends JFrame {
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int result = fileChooser.showSaveDialog(this);
 
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File outputFile = fileChooser.getSelectedFile();
-            if (!outputFile.getName().endsWith(".pdf")) {
-                outputFile = new File(outputFile.getPath() + ".pdf");
-            }
+        if (result != JFileChooser.APPROVE_OPTION) {
+            resultLabel.setText("PDF combining cancelled.");
+            return;
+        }
 
-            PDFMergerUtility pdfMerger = new PDFMergerUtility();
+        File outputFile = fileChooser.getSelectedFile();
+        if (!outputFile.getName().toLowerCase().endsWith(".pdf")) {
+            outputFile = new File(outputFile.getPath() + ".pdf");
+        }
+
+        PDFMergerUtility pdfMerger = new PDFMergerUtility();
+        try {
             for (File file : selectedFiles) {
                 pdfMerger.addSource(file);
             }
             pdfMerger.setDestinationFileName(outputFile.getPath());
-
-            try {
-                pdfMerger.mergeDocuments(null);
-                resultLabel.setText("Combined PDF saved as " + outputFile.getName());
-            } catch (IOException e) {
-                resultLabel.setText("Error combining PDFs.");
-            }
-        } else {
-            resultLabel.setText("PDF combining cancelled.");
+            pdfMerger.mergeDocuments(null);
+            resultLabel.setText("Combined PDF saved as " + outputFile.getName());
+        } catch (IOException e) {
+            resultLabel.setText("Error combining PDFs.");
         }
     }
 
@@ -259,25 +238,20 @@ public class PDFCompiler extends JFrame {
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.APP_ABOUT)) {
-                desktop.setAboutHandler(new AboutHandler() {
-                    @Override
-                    public void handleAbout(java.awt.desktop.AboutEvent e) {
-                        JOptionPane.showMessageDialog(
-                                null,
-                                """
-                                        PDF Compiler
-                                        Version 3.1
-                                        Released May 16, 2024
-                                        Copyright (C) 2024 Morales Research \
-                                        Technology Inc
-                                        Copyright (C) 2023 - 24 The University of Texas at \
-                                        Austin,
-                                        Department of Computer Science""",
-                                "About PDF Compiler",
-                                JOptionPane.INFORMATION_MESSAGE
-                        );
-                    }
-                });
+                desktop.setAboutHandler(e -> JOptionPane.showMessageDialog(
+                        null,
+                        """
+                                PDF Compiler
+                                Version 3.2
+                                Released June 30, 2026
+                                Copyright (C) 2026 Morales Research \
+                                Technology Inc
+                                Copyright (C) 2023 - 26 The University of Texas at \
+                                Austin,
+                                Department of Computer Science""",
+                        "About PDF Compiler",
+                        JOptionPane.INFORMATION_MESSAGE
+                ));
             }
         }
     }
@@ -288,9 +262,29 @@ public class PDFCompiler extends JFrame {
      */
     public static void main(String[] args) {
         System.setProperty("apple.awt.application.name", "PDF Compiler");
+        setNimbusLookAndFeel();
         SwingUtilities.invokeLater(() -> {
             PDFCompiler pdfCompiler = new PDFCompiler();
             pdfCompiler.setVisible(true);
         });
+    }
+
+    /**
+     * Sets the Nimbus look and feel as the default user interface theme so the
+     * application has a consistent, modern appearance across platforms. If
+     * Nimbus is unavailable on the running JRE, the system silently falls back
+     * to the default cross-platform look and feel.
+     */
+    private static void setNimbusLookAndFeel() {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    return;
+                }
+            }
+        } catch (ReflectiveOperationException | UnsupportedLookAndFeelException e) {
+            // Nimbus is not available; keep the default look and feel.
+        }
     }
 }

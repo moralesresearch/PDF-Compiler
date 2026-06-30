@@ -1,0 +1,27 @@
+name: Build
+
+# Continuous integration: make sure PDF Compiler always compiles cleanly.
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Compile
+        run: |
+          mkdir -p build/classes
+          javac -Xlint:all -cp libs/pdfbox-app-3.0.2.jar -d build/classes src/PDFCompiler.java
